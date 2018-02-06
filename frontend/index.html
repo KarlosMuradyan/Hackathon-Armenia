@@ -1,219 +1,357 @@
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>Futures Contract Testing Utility</title>
+<html>
+<title>Triengine oracle algorithm proof of work</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    </head>
-    <body>
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Zap Hackathon: Futures Contract Testing Utility</a>
-                <ul class="right hide-on-med-and-down">
-                    <!-- <li><a href="#">Navbar Link</a></li> -->
-                </ul>
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right">Triengine oracle algorithm proof of work</span>
+</div>
 
-                <ul id="nav-mobile" class="side-nav">
-                    <!-- <li><a href="#">Navbar Link</a></li> -->
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
-        <div class="section no-pad-bot">
-            <div class="container">
-                <div class="container" id="welcomeStage">
-                    <br><br>
+<!-- Sidebar/menu -->
+<!-- <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+    </div>
+    <div class="w3-col s8 w3-bar">
+      <span>Welcome, <strong>Mike</strong></span><br>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+  </div>
+</nav> -->
 
-                    <h1 class="header center orange-text">Futures Contract</h1>
-                    <div class="row center">
-                        <h5 class="header col s12 light">Use this utility to test your futures contract!</h5>
-                    </div>
 
-                    <div class="row center">
-                        <a href="#" id="getStarted" class="btn-large waves-effect waves-light orange">Get Started</a>
-                    </div>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-                    <br><br>
-                </div>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:0px;margin-top:43px;">
 
-                <div style="display: none;" id="contractSelection">
-                    <br><br>
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> Input data</b></h5>
+  </header>
 
-                    <div class="row">
-                        <div class="col s12">
-                            <p>Would you like to deploy a new Futures contract or use an existing futures contract</p>
-                        </div>
-
-                        <div class="col s12 m6">
-                            <a href="#" id="newContract" class="btn-large waves-effect waves-light">New Contract</a>
-                        </div>
-
-                        <div class="col s12 m6">
-                            <a href="#" id="existingContract" class="btn-large waves-effect waves-light">Existing Contract</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="display: none;" id="contractDeploy">
-                    <br><br>
-
-                    <div class="row">
-                        <div class="col s12">
-                            <p>
-                                Please input the details for the deployment of this contract
-                            <p>
-                        </div>
-
-                        <div class="input-field col s6 m3">
-                            <input placeholder="" id="expiresDate" type="text" class="datepicker">
-                            <label for="expiresDate">Expires Date</label>
-                        </div>
-
-                        <div class="input-field col s6 m3">
-                            <input placeholder="" id="expiresTime" type="text" class="timepicker">
-                            <label for="expiresDate">Expires Time</label>
-                        </div>
-
-                        <div class="input-field col s12 m6">
-                            <input placeholder="" id="buyIn" type="number" class="validate" step="any">
-                            <label for="buyIn">Buy In</label>
-                        </div>
-
-                        <div class="input-field col s12">
-                            <input placeholder="" id="queryStr" type="text" class="validate">
-                            <label for="queryStr">Query String</label>
-                        </div>
-
-                        <div class="input-field col s12">
-                            <input placeholder="" id="oracleAddr" type="text" class="validate">
-                            <label for="oracleAddr">Oracle Address</label>
-                        </div>
-
-                        <div class="col s12">
-                            <p>
-                                <a href="#" id="deployContract" class="btn waves-effect waves-light">Deploy</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="display: none;" id="contractInput">
-                    <br><br>
-
-                    <div class="row">
-                        <div class="col s12">
-                            <p>
-                                Please input the ethereum address of the smart contract you would like to use.
-                            </p>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <input placeholder="" id="inputContractAddress" type="text" class="validate">
-                            <label for="inputContractAddress">Contract Address</label>
-                        </div>
-                        <div class="input-field col s12 m6">
-                            <a class="waves-effect waves-light btn" id="inputContractBtn">Continue</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="display: none;" id="loadingStatus">
-                    <h1 id="loadingMessage">Loading Contract Status</h1><br>
-
-                    <div class="preloader-wrapper big active">
-                        <div class="spinner-layer spinner-blue-only">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
-                            </div><div class="gap-patch">
-                                <div class="circle"></div>
-                            </div><div class="circle-clipper right">
-                                <div class="circle"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="display: none;" id="contractUnfilled">
-                    <div class="col s12">
-                        <p>
-                            This contract is ready to have positions filled out for it.
-                        </p>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <select id="position">
-                            <option value="" disabled selected>Choose your position</option>
-                            <option value="0">Long</option>
-                            <option value="1">Short</option>
-                        </select>
-                        <label>Position</label>
-                    </div>
-
-                    <div class="input-field col s6">
-                        <input placeholder="" id="positionAmount" type="number" step="any" class="validate">
-                        <label for="positionAmount">Position Amount (eth)</label>
-                    </div>
-
-                    <div class="input-field col s12">
-                        <a class="waves-effect waves-light btn" id="makePosition">Make Position</a>
-                    </div>
-                </div>
-
-                <div style="display: none;" id="contractReadyStart">
-                    <p>
-                        This contract is ready to be started. Click the button below to initiate the futures contract.
-                    </p>
-
-                    <div class="input-field col s12">
-                        <a class="waves-effect waves-light btn" id="startContract">Start</a>
-                    </div>
-                </div>
-
-                <div style="display: none;" id="contractLive">
-                    <p>
-                        The contract is currently live. <span id="longAddress" style="font-family:'Lucida Console', monospace"></span> took a long and <span id="shortAddress" style="font-family:'Lucida Console', monospace"></span> took a short. The current pot it <span id="contractValue" style="font-family:'Lucida Console', monospace"></span> ETH
-                    </p>
-                </div>
-
-                <div style="display: none;" id="contractReadyEnd">
-                    <p>
-                        This contract is ready to be ended. Click the button below to end the futures contract.
-                    </p>
-
-                    <div class="input-field col s12">
-                        <a class="waves-effect waves-light btn" id="endContract">End</a>
-                    </div>
-                </div>
-
-                <div style="display: none;" id="contractReadySettle">
-                    <p>
-                        This contract is ready to be settled.
-                    </p>
-
-                    <div class="input-field col s12">
-                        <a class="waves-effect waves-light btn" id="settleContract">Settle</a>
-                    </div>
-                </div>
-            </div>
+  <!-- <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>52</h3>
         </div>
-
-        <div id="errorModal" class="modal">
-            <div class="modal-content">
-                <h4 id="errorHead"></h4>
-                <p id="errorBody"></p>
-            </div>
-            <div class="modal-footer">
-                <a href="index.html" class="modal-action modal-close waves-effect waves-green btn-flat">Reload</a>
-            </div>
+        <div class="w3-clear"></div>
+        <h4>Messages</h4>
+      </div>
+    </div> -->
+		<div class="w3-row-padding w3-margin-bottom">
+	    <div class="w3-quarter">
+	      <div class="w3-container w3-red w3-padding-16">
+	        <!-- <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div> -->
+	        <div class="w3-clear"></div>
+	        <h4>Please input data from source 1</h4>
+				<!-- <div class="w3-right"> -->
+					<input type="number" class="w3-input">
+				<!-- </div> -->
+	    </div>
+		</div>
+		<div class="w3-quarter">
+				<!-- <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div> -->
+				<div class="w3-container w3-blue w3-padding-16">
+				<div class="w3-clear"></div>
+				<h4>Please input data from source 2</h4>
+			<!-- <div class="w3-right"> -->
+				<input type="number" class="w3-input">
+			<!-- </div> -->
+		</div>
+	</div>
+	<div class="w3-quarter">
+		<div class="w3-container w3-orange w3-padding-16">
+			<!-- <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div> -->
+			<div class="w3-clear"></div>
+			<h4>Please input data from source 3</h4>
+		<!-- <div class="w3-right"> -->
+			<input type="number" class="w3-input">
+		<!-- </div> -->
+	</div>
+</div>
+<div class="w3-quarter">
+	<div class="w3-container w3-green w3-padding-16">
+		<!-- <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div> -->
+		<div class="w3-clear"></div>
+		<h4>Please input data from source 4</h4>
+	<!-- <div class="w3-right"> -->
+		<input type="number" class="w3-input">
+	<!-- </div> -->
+</div>
+</div>
+    <!-- <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>99</h3>
         </div>
+        <div class="w3-clear"></div>
+        <h4>Views</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>23</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Shares</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>50</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Users</h4>
+      </div>
+    </div>
+  </div> -->
 
-    </body>
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <!-- <div class="w3-third">
+        <h5>Regions</h5>
+        <img src="/w3images/region.jpg" style="width:100%" alt="Google Regional Map">
+      </div> -->
+      <div class="w3-twothird">
+        <h5>User data</h5>
+        <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
+            <td>User 1</td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Voted value"></td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Amount bided"></td>
+          </tr>
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ethjs@0.3.0/dist/ethjs.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/contract.js"></script>
-    <script src="js/index.js"></script>
+            <td><i class="fa fa-user w3-text-gray w3-large"></i></td>
+						<td>User 2</td>
+            <td><input type="number" class="w3-input w3-transparent" placeholder="Voted value"></td>
+            <td><input type="number" class="w3-input w3-transparent" placeholder="Amount bided"></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-user w3-text-green w3-large"></i></td>
+						<td>User 3</td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Voted value"></td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Amount bided"></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-user w3-text-black w3-large"></i></td>
+						<td>User 4</td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Voted value"></td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Amount bided"></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-user w3-text-orange w3-large"></i></td>
+						<td>User 5</td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Voted value"></td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Amount bided"></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-user w3-text-red w3-large"></i></td>
+						<td>User 6</td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Voted value"></td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Amount bided"></td>
+          </tr>
+					<tr>
+						<td><i class="fa fa-user w3-text-yellow w3-large"></i></td>
+						<td>User 7</td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Voted value"></td>
+						<td><input type="number" class="w3-input w3-transparent" placeholder="Amount bided"></td>
+					</tr>
+					<tr>
+        </table>
+      </div>
+    </div>
+  </div>
+	<button class="w3-button w3-dark-grey w3-margin-top" style="margin-left:8px;">Submit <i class="fa fa-arrow-right"></i></button>
+
+  <!-- <hr>
+  <div class="w3-container">
+    <h5>Results</h5>
+    <p>New Visitors</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
+    </div>
+
+    <p>New Users</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50%</div>
+    </div>
+
+    <p>Bounce Rate</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="w3-container">
+    <h5>Countries</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td>United States</td>
+        <td>65%</td>
+      </tr>
+      <tr>
+        <td>UK</td>
+        <td>15.7%</td>
+      </tr>
+      <tr>
+        <td>Russia</td>
+        <td>5.6%</td>
+      </tr>
+      <tr>
+        <td>Spain</td>
+        <td>2.1%</td>
+      </tr>
+      <tr>
+        <td>India</td>
+        <td>1.9%</td>
+      </tr>
+      <tr>
+        <td>France</td>
+        <td>1.5%</td>
+      </tr>
+    </table><br>
+    <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Recent Users</h5>
+    <ul class="w3-ul w3-card-4 w3-white">
+      <li class="w3-padding-16">
+        <img src="/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Mike</span><br>
+      </li>
+      <li class="w3-padding-16">
+        <img src="/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Jill</span><br>
+      </li>
+      <li class="w3-padding-16">
+        <img src="/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+        <span class="w3-xlarge">Jane</span><br>
+      </li>
+    </ul>
+  </div>
+  <hr>
+
+  <div class="w3-container">
+    <h5>Recent Comments</h5>
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img class="w3-circle" src="/w3images/avatar3.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>John <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
+        <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+      </div>
+    </div>
+
+    <div class="w3-row">
+      <div class="w3-col m2 text-center">
+        <img class="w3-circle" src="/w3images/avatar1.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+        <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">Demographic</h5>
+        <p>Language</p>
+        <p>Country</p>
+        <p>City</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">System</h5>
+        <p>Browser</p>
+        <p>OS</p>
+        <p>More</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">Target</h5>
+        <p>Users</p>
+        <p>Active</p>
+        <p>Geo</p>
+        <p>Interests</p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>FOOTER</h4>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+</script>
+
+</body>
 </html>
