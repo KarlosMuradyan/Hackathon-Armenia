@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const oracle = require('./oracle/oracle.js');
+
 const port = process.env.PORT || 3000;
 
 // Create the app
@@ -27,7 +29,12 @@ router.use(function(req, res, next) {
 
 router.route('/validate')
 	.post((req, res) => {
-		console.log(req);
+		let source_data = req.body.source_data;
+		let user_data = req.body.user_data;
+		let user_bid = req.body.user_bid;
+
+		let result = oracle.doValidation(source_data, user_data, user_bid);
+		res.json(result);
 	});
 
 router.get('/', (req, res) => {
