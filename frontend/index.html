@@ -55,7 +55,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:0px;margin-top:43px;">
-
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
     <h5><b><i class="fa fa-dashboard"></i> Input data</b></h5>
@@ -73,6 +72,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
     </div> -->
 		<div class="w3-row-padding w3-margin-bottom">
+        <form id="page_form" action="/api/validate" method="post">
 	    <div class="w3-quarter">
 	      <div class="w3-container w3-red w3-padding-16">
 	        <!-- <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div> -->
@@ -203,9 +203,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
   </div>
 
-
-        <a id="add" style="display:block;" onclick='showOld()'>Add More</a>
-	<button class="w3-button w3-dark-grey w3-margin-top" style="margin-left:8px;">Submit <i class="fa fa-arrow-right"></i></button>
+    </form>
+    <a id="add" class="w3-button" style="display:inline-block;" onclick='showOld()'>Add More</a>
+	<button form="page_form" value="Submit" style="display:block;" class="w3-button w3-dark-grey w3-margin-top" style="margin-left:8px;">Submit <i class="fa fa-arrow-right"></i></button>
 
   <!-- <hr>
   <div class="w3-container">
