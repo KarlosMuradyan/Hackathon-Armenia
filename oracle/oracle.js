@@ -22,6 +22,9 @@ var getVariances = (user_bid, mean) => {
 var getPercentiles = (variences) => {
         let results = [];
         let sumOfVariences = sum(variences);
+	if (sumOfVariences === 0) {
+		return variences;
+	}
         for (i in variences) {
                 results.push(variences[i]/sumOfVariences);
         }
