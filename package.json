@@ -1,12 +1,12 @@
 {
-  "name": "Future",
+  "name": "Oracle BM",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
+  "author": "Triengine",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2"

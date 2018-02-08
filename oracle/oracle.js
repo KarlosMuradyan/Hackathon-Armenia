@@ -109,7 +109,7 @@ var doValidation = (source_data, user_data, user_bid) => {
         let prizePercentiles = getPercentiles(reversedVariences);
         let totalPrize = 0;
         for (i in ub) {
-                if (!winners.includes(i)) {
+                if (!winners.includes(parseInt(i))) {
                         totalPrize += ub[i];
                 }
         }
