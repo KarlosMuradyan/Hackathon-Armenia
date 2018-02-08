@@ -159,43 +159,43 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                 <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
                 <td>User 1</td>
                 <td><input type="number" name="user_data[]" class="w3-input w3-transparent" placeholder="Voted value" required></td>
-    			<td><input type="number" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
+    			<td><input type="number" step="0.001" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
               </tr>
 
                 <td><i class="fa fa-user w3-text-gray w3-large"></i></td>
     			<td>User 2</td>
                 <td><input type="number" name="user_data[]" class="w3-input w3-transparent" placeholder="Voted value" required></td>
-                <td><input type="number" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
+                <td><input type="number" step="0.001" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
               </tr>
               <tr>
                 <td><i class="fa fa-user w3-text-green w3-large"></i></td>
 				<td>User 3</td>
 				<td><input type="number" name="user_data[]" class="w3-input w3-transparent" placeholder="Voted value" required></td>
-				<td><input type="number" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
+				<td><input type="number" step="0.001" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
               </tr>
               <tr>
                 <td><i class="fa fa-user w3-text-black w3-large"></i></td>
 				<td>User 4</td>
 				<td><input type="number" name="user_data[]" class="w3-input w3-transparent" placeholder="Voted value" required></td>
-				<td><input type="number" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
+				<td><input type="number" step="0.001" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
               </tr>
               <tr>
                 <td><i class="fa fa-user w3-text-orange w3-large"></i></td>
 				<td>User 5</td>
 				<td><input type="number" name="user_data[]" class="w3-input w3-transparent" placeholder="Voted value" required></td>
-				<td><input type="number" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
+				<td><input type="number" step="0.001" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
               </tr>
               <tr>
                 <td><i class="fa fa-user w3-text-red w3-large"></i></td>
 				<td>User 6</td>
 				<td><input type="number" name="user_data[]" class="w3-input w3-transparent" placeholder="Voted value" required></td>
-				<td><input type="number" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
+				<td><input type="number" step="0.001" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
               </tr>
 				<tr>
 				<td><i class="fa fa-user w3-text-yellow w3-large"></i></td>
 				<td>User 7</td>
 				<td><input type="number" name="user_data[]" class="w3-input w3-transparent" placeholder="Voted value" required></td>
-				<td><input type="number" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
+				<td><input type="number" step="0.001" name="user_bid[]" class="w3-input w3-transparent" placeholder="Amount bided" required></td>
 				</tr>
             </tbody>
         </table>
@@ -228,12 +228,20 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <hr>
 
   <div class="w3-container">
-    <h5>User Profits</h5>
-    <table id="user_profits" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-      <!-- <tr>
-        <td>User 1</td>
-        <td>65%</td>
-      </tr>
+    <h5>User Profits <i id="totalPrizeHTML"></h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+        <tbody>
+           <tr>
+            <td>Name of User</td>
+            <td>Bid Amount</td>
+            <td>Calculation of Profit</td>
+            <td>Money Received</td>
+            <td>Increase Percentage</td>
+          </tr>
+        </tbody>
+        <tbody  id="user_profits">
+        </tbody>
+      <!--
       <tr>
         <td>User 2</td>
         <td>15.7%</td>
