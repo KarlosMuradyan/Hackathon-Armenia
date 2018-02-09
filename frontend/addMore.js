@@ -108,7 +108,12 @@ function displayWonUsers(data)
 
 function displayWonLostStats(ratio, arr, v)
 {
-    var t = '(Winning value is ';
+    var t = '';
+    if (v.length === 1) {
+        t += '(Winning value is ';
+    } else {
+        t += '(Winning values are ';
+    }
     for (i in v) {
         if (i != 0) t += ', ';
         t += arr[v[i]];
