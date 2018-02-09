@@ -22,7 +22,7 @@ function addUserStats(data)
 {
     var wonLostRatio = 0;
     if (data.prizePercentiles.length != 0){
-         wonLostRatio = data.winners.length/data.prizePercentiles.length;
+         wonLostRatio = data.winners.length/(data.prizePercentiles.length+4);
     }
     drawChart(data);
     displayWonUsers(data);
