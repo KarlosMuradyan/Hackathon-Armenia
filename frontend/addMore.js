@@ -36,7 +36,6 @@ function drawChart(data)
     var datas = m_user_datas.concat(m_source_datas);
     for (user_index in datas){
         var value = datas[user_index];
-        console.log(value);
         if (google_visual_data.length === 0){
             google_visual_data[0] = new Array(2);
             google_visual_data[0][0] = value;
@@ -44,7 +43,6 @@ function drawChart(data)
         } else {
             for (i=0; i<google_visual_data.length; i++){
                 if (google_visual_data[i][0] === value) {
-                    console.log('adding value of index ' + i);
                     google_visual_data[i][1]++;
                     break;
                 } else {
@@ -58,8 +56,6 @@ function drawChart(data)
             }
         }
     }
-    console.log(google_visual_data);
-    console.log(google_visual_data.length);
     google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       google_visual_data.unshift(['Values', 'distribution']);
@@ -69,7 +65,7 @@ function drawChart(data)
 
         var options = {
             backgroundColor: 'transparent',
-          title: 'Submitted Values',
+          title: 'Submitted Values (Including Sources)',
           legend: 'none',
           pieSliceText: 'label',
           slices: {  4: {offset: 0.2},
