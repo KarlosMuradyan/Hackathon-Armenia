@@ -97,10 +97,9 @@ var doValidation = (source_data, user_data, user_bid) => {
                 };
         }
         var winners = [];
-	console.log(gd);
         for (ind in ca) {
                 let res = [], i = -1;
-                while ((i = ud.indexOf(gd[ca[ind]], i+1)) != -1){
+                while ((i = ud.indexOf(gd[ca[parseInt(ind)]], i+1)) != -1){
                         res.push(i);
                 }
                 winners = winners.concat(res);
