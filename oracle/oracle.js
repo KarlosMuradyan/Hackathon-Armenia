@@ -49,6 +49,13 @@ var reverseVariences = (variences) => {
 
 var getCorrectAnswer = (source_data, user_data) => {
         let results = Array(source_data.length).fill(0);
+	for (let i in source_data) {
+		for (j in source_data) {
+			if (j !== i && source_data[i] === source_data[j]) {
+				results[i]++;
+			}
+		}
+	}
         for (ud in user_data) {
 		let found = false;
 		for (sd in source_data) {
@@ -70,8 +77,6 @@ var getCorrectAnswer = (source_data, user_data) => {
         max_indexes.forEach((i) => {
                 answers.push(source_data[i]);
         });
-	console.log(source_data);
-	console.log(max_indexes);
         return {
 		sourceData: source_data,
 		maxIndexes: max_indexes
@@ -104,8 +109,8 @@ var doValidation = (source_data, user_data, user_bid) => {
         // Calculate prizes
         let mean = getMean(ub);
         let variences = getVariances(ub, winners, mean);
-        let reversedVariences = reverseVariences(variences);
         // Reverse percentiles so users with less variances get higher prizes
+        let reversedVariences = reverseVariences(variences);
         let prizePercentiles = getPercentiles(reversedVariences);
         let totalPrize = 0;
         for (i in ub) {
