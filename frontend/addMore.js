@@ -3,6 +3,8 @@ var users_won = 0;
 var colors = ["w3-text-blue", "w3-text-gray", "w3-text-green", "w3-text-black",
                             "w3-text-orange", "w3-text-red", "w3-text-yellow"];
 var m_user_bids;
+var m_user_datas;
+var m_source_datas;
 // before submitting
 function addMoreUsersForInput(){
         var appendFields1 = '<tr>';
@@ -22,8 +24,65 @@ function addUserStats(data)
     if (data.prizePercentiles.length != 0){
          wonLostRatio = data.winners.length/data.prizePercentiles.length;
     }
+    drawChart(data);
     displayWonUsers(data);
-    displayWonLostStats(wonLostRatio);
+    displayWonLostStats(wonLostRatio, data.answers, data.correctAnswers);
+}
+
+function drawChart(data)
+{
+    var answers = data.answers;
+    var google_visual_data = [];
+    var datas = m_user_datas.concat(m_source_datas);
+    for (user_index in datas){
+        var value = datas[user_index];
+        console.log(value);
+        if (google_visual_data.length === 0){
+            google_visual_data[0] = new Array(2);
+            google_visual_data[0][0] = value;
+            google_visual_data[0][1] = 1;
+        } else {
+            for (i=0; i<google_visual_data.length; i++){
+                if (google_visual_data[i][0] === value) {
+                    console.log('adding value of index ' + i);
+                    google_visual_data[i][1]++;
+                    break;
+                } else {
+                    if ((i+1) === google_visual_data.length){
+                        google_visual_data[i+1] = new Array(2);
+                        google_visual_data[i+1][0] = value;
+                        google_visual_data[i+1][1] = 1;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    console.log(google_visual_data);
+    console.log(google_visual_data.length);
+    google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      google_visual_data.unshift(['Values', 'distribution']);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(google_visual_data
+    );
+
+        var options = {
+            backgroundColor: 'transparent',
+          title: 'Submitted Values',
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: {  4: {offset: 0.2},
+                    12: {offset: 0.3},
+                    14: {offset: 0.4},
+                    15: {offset: 0.5},
+          },
+        };
+
+        $("#piechart").css("display", 'block');
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
 }
 
 function displayWonUsers(data)
@@ -47,8 +106,15 @@ function displayWonUsers(data)
     }
 }
 
-function displayWonLostStats(ratio)
+function displayWonLostStats(ratio, arr, v)
 {
+    var t = '(Winning value is ';
+    for (i in v) {
+        if (i != 0) t += ', ';
+        t += arr[v[i]];
+    }
+    t += ')';
+    $("#winning_value").text(t);
     $("#num_users_won").css('width', Math.round(ratio*100) + '%');
     $("#num_users_won").text(Math.round(ratio*100) + '%');
     $("#num_users_lost").css('width', Math.round(100 - ratio*100) + '%');
@@ -72,6 +138,8 @@ function sendData()
     });
 
     m_user_bids = user_bid_values;
+    m_user_datas = user_data_values;
+    m_source_datas = source_data_values;
 
     var formData = new FormData();
     formData.append('source_data', 'source_data_values');
