@@ -79,7 +79,9 @@ Now, that we have the validated data and the winners we need to grant them prize
 
 ## Demonstration
 The code in this repository does all the steps described above and shows the results in nice and beutiful way.
-To run the code clone or download this repository
+The proof of work demo is available [here](https://fathomless-headland-28312.herokuapp.com/). 
+Alternatively, you can download and run it on your own machine.
+To run the code, clone or download this repository
 ```
 $ git clone https://github.com/KarlosMuradyan/Hackathon-Armenia.git
 $ cd Hackathon-Armenia
