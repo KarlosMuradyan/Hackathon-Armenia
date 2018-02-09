@@ -53,25 +53,28 @@ Now that we have the validated data and the winners we need to grant them prizes
 
 1. We count the mean of bidded money
 
-![equation]( http://www.sciweavers.org/tex2img.php?eq=%20%5Cbar%7BX%7D%20%3D%20%5Cfrac%7B%20%5Csum_i%5En%20X_%7Bi%7D%20%7D%7Bn%7D%20&bc=White&fc=Black&im=jpg&fs=12&ff=modern&edit=0 )
+![equation](http://chart.apis.google.com/chart?cht=tx&chl=%5Cbar%7BX%7D%20%3D%20%5Cfrac%7B%20%5Csum_i%5En%20X_%7Bi%7D%20%7D%7Bn%7D)
+
 2. Then we find variences of the amounts of bidded from the mean. Here we can ignore the money bidded from users who lost
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=%20%5Csigma%20_%7Bi%7D%20%3D%20%7C%20X_%7Bi%7D%20-%20%5Cbar%7BX%7D%20%7C&bc=White&fc=Black&im=jpg&fs=12&ff=modern&edit=0)
+![equation](http://chart.apis.google.com/chart?cht=tx&chl=%5Csigma%20_%7Bi%7D%20%3D%20%7C%20X_%7Bi%7D%20-%20%5Cbar%7BX%7D%20%7C)
+
 3. We want people who bidded closer to average receive more percent from the prize. This is done to keep equality, so it is not possible for some reach guy to come, put a huge amount of money on right answer and receive the majority of money. For that we reverse the variences, but add 1 in denumerator to eliminate the 0 case.
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=%20%5Cdelta%20_%7Bi%7D%20%3D%20%5Cfrac%7Bq%7D%7B1%20%2B%20%5Csigma%20_%7Bi%7D%20%7D&bc=White&fc=Black&im=jpg&fs=12&ff=modern&edit=0)
+![equation](http://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta%20_%7Bi%7D%20%3D%20%5Cfrac%7Bq%7D%7B1%20%2B%20%5Csigma%20_%7Bi%7D%20%7D)
+
 4. Now let's convert the amounts we got to interval __[0,1]__ so we can see what percent of the prize each winner will get
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=%20%5Cxi%20_%7Bi%7D%20%3D%20%5Cfrac%7B%5Cdelta_%7Bi%7D%7D%7B%20%20%5Csum_k%5En%20%5Cdelta_%7Bk%7D%20%20%7D&bc=White&fc=Black&im=jpg&fs=12&ff=modern&edit=0)
+![equation](http://chart.apis.google.com/chart?cht=tx&chl=%5Cxi%20_%7Bi%7D%20%3D%20%5Cfrac%7B%5Cdelta_%7Bi%7D%7D%7B%20%20%5Csum_k%5En%20%5Cdelta_%7Bk%7D%20%20%7D)
 
 5. Now to get total amount of the prize we sum up all the money people lost
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=%5Ctextrm%7BTotal%20Prize%7D%20%5Cquad%20%20%5CTheta%20%20%3D%20%20%5Csum_i%5En%20%20%5Ctheta%20_%7Bi%7D&bc=White&fc=Black&im=jpg&fs=12&ff=modern&edit=0)
-    Where   ![equation](http://www.sciweavers.org/tex2img.php?eq=%5Ctheta%20_%7Bi%7D&bc=White&fc=Black&im=jpg&fs=12&ff=modern&edit=0) is the amount that i th user lost. If the user won, it is equal to 0
+![equation](http://chart.apis.google.com/chart?cht=tx&chl=%5Ctextrm%7BTotal%20Prize%7D%20%5Cquad%20%20%5CTheta%20%20%3D%20%20%5Csum_i%5En%20%20%5Ctheta%20_%7Bi%7D)
+    Where   ![equation](http://chart.apis.google.com/chart?cht=tx&chl=%5Ctheta%20_%7Bi%7D) is the amount that i th user lost. If the user won, it is equal to 0
 
 6. Now it is easy to find the money each winner will get by
 
-![equation](http://www.sciweavers.org/tex2img.php?eq=%5Comega_%7Bi%7D%20%20%3D%20%20%5CTheta%20%20%5Ccdote%20%5Cxi%20_%7Bi%7D&bc=White&fc=Black&im=jpg&fs=12&ff=modern&edit=0)
+![equation](http://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bi%7D%20%20%3D%20%20%5CTheta%20%20%20%5Cxi%20_%7Bi%7D)
 
 ## Demonstration
 The code in this repository does all the steps described above and shows the results in nice and beutiful way.
