@@ -48,7 +48,7 @@ var reverseVariences = (variences) => {
 };
 
 var getCorrectAnswer = (source_data, user_data) => {
-        let results = Array(source_data.length).fill(0);
+        let results = Array(source_data.length).fill(1);
 	for (let i in source_data) {
 		for (j in source_data) {
 			if (j !== i && source_data[i] === source_data[j]) {
@@ -59,9 +59,10 @@ var getCorrectAnswer = (source_data, user_data) => {
         for (ud in user_data) {
 		let found = false;
 		for (sd in source_data) {
-                        if (source_data[sd] === user_data[ud]) {
+                        if (source_data[parseInt(sd)] === user_data[parseInt(ud)]) {
 				found =	true;
-                                results[source_data.indexOf(source_data[sd])]++;
+                                results[source_data.indexOf(source_data[parseInt(sd)])]++;
+				break;
                         }
 		}
 		if (!found) {
