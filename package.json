@@ -1,5 +1,5 @@
 {
-  "name": "Oracle BM",
+  "name": "oracle-bm",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
